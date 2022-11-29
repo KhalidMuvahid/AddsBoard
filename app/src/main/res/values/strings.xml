@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AddBoard</string>
+    <string name="ad_cat1">Ads</string>
+    <string name="my_ads">My ads</string>
+    <string name="ad_cars">Cars</string>
+    <string name="ad_pc">Computers</string>
+    <string name="ad_smartphone">Smartphones</string>
+    <string name="ad_dm">House Appliances</string>
+    <string name="ad_cat2">Account</string>
+    <string name="ac_sign_in">Sign in</string>
+    <string name="ac_sign_up">Sign up</string>
+    <string name="ac_sign_out">Sign out</string>
+    <string name="header_email">some@gmail.com</string>
+    <string name="close">close</string>
+    <string name="open">open</string>
+</resources>
