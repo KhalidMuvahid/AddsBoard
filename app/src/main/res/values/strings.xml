@@ -10,9 +10,15 @@
     <string name="ac_sign_in">Sign in</string>
     <string name="ac_sign_up">Sign up</string>
     <string name="ac_sign_out">Sign out</string>
-    <string name="header_email">some@gmail.com</string>
+    <string name="not_reg">Sign in or up</string>
     <string name="close">close</string>
     <string name="open">open</string>
     <string name="emailDialog">Email</string>
     <string name="passwordDialog">Password</string>
+    <string name="info_ver_message">we send to you verification message</string>
+    <string name="info_error_sign_up">invalid value please try one more time</string>
+    <string name="info_error_send_message">Something wrong we cant send message to u email</string>
+    <string name="info_successfully_sign_in">Successfully  signed up</string>
+    <string name="info_error_sign_in">Incorrect email or password value</string>
+
 </resources>

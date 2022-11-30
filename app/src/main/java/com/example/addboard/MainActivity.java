@@ -6,18 +6,21 @@ import androidx.core.view.GravityCompat;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.addboard.databinding.ActivityMainBinding;
 import com.example.addboard.helpers.DialogHelper;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private ActivityMainBinding binding;
     private DialogHelper dialogHelper;
+    private TextView tvAccount;
     public FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
@@ -32,8 +35,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         binding.navView.setNavigationItemSelectedListener(this);
+        tvAccount = binding.navView.getHeaderView(0).findViewById(R.id.tvAccountEmail);
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mAuth.getCurrentUser() == null){
+            tvAccount.setText(R.string.not_reg);
+        }else {
+            tvAccount.setText(mAuth.getCurrentUser().getEmail());
+        }
+    }
+
+    public void uiUpdate(FirebaseUser user){
+        if (user == null){
+            tvAccount.setText(R.string.not_reg);
+        }else{
+            tvAccount.setText(user.getEmail());
+        }
     }
 
     @Override
@@ -69,7 +91,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
             case R.id.ac_sign_out:{
-                dialogHelper.createDialog(dialogHelper.SIGN_OUT_STATE);
+                uiUpdate(null);
+                mAuth.signOut();
                 break;
             }
             default:

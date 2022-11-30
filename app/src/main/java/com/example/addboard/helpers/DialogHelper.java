@@ -29,7 +29,9 @@ public class DialogHelper {
 
     public void createDialog(int index){
         AlertDialog.Builder builder = new AlertDialog.Builder(act);
+        builder.setView(binding.getRoot());
 
+        AlertDialog dialog = builder.create();
         switch (index){
             case  SIGN_UP_STATE:{
                 binding.dialogTitle.setText(R.string.ac_sign_up);
@@ -49,10 +51,17 @@ public class DialogHelper {
                 String password  =binding.passwordEdt.getEditText().getText().toString();
                 accHelper.signUpWithEmail(email,password);
             }
+            dialog.dismiss();
         });
 
-        builder.setView(binding.getRoot());
-        builder.show();
+        binding.dialogSignInBt.setOnClickListener(v->{
+            String email  =binding.emailEdT.getEditText().getText().toString();
+            String password  =binding.passwordEdt.getEditText().getText().toString();
+            accHelper.signInWithEmail(email,password);
+            dialog.dismiss();
+        });
+
+        dialog.show();
     }
 
 
