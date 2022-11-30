@@ -1,25 +1,24 @@
 package com.example.addboard;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.addboard.databinding.ActivityMainBinding;
+import com.example.addboard.helpers.DialogHelper;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private ActivityMainBinding binding;
+    private DialogHelper dialogHelper;
+    public FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        dialogHelper = new DialogHelper(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,binding.drawerLayout,binding.mainContent.toolbar,R.string.open,R.string.close);
         binding.drawerLayout.addDrawerListener(toggle);
@@ -61,15 +61,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
             case R.id.ac_sign_up:{
-                Toast.makeText(this,"ac_sign_up",Toast.LENGTH_SHORT).show();
+                dialogHelper.createDialog(dialogHelper.SIGN_UP_STATE);
                 break;
             }
             case R.id.ac_sign_in:{
-                Toast.makeText(this,"ac_sign_in",Toast.LENGTH_SHORT).show();
+                dialogHelper.createDialog(dialogHelper.SIGN_IN_STATE);
                 break;
             }
             case R.id.ac_sign_out:{
-                Toast.makeText(this,"ac_sign_out",Toast.LENGTH_SHORT).show();
+                dialogHelper.createDialog(dialogHelper.SIGN_OUT_STATE);
                 break;
             }
             default:
